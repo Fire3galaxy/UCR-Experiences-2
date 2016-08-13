@@ -30,19 +30,7 @@ public class PlayVideos : MonoBehaviour {
 
     void Start ()
     {
-        // Links + Rotation value (0 to 360, counterclockwise)
-        // FIXME: Change first video so pathway of video is north
-        allNodes = new Node[] {
-            new Node("https://www.dropbox.com/s/ztqvxo4asboxpyu/scene%20A%20stitched.mp4?raw=1", 39.0f),
-            new Node("http://kolor.com/360-videos-files/kolor-stearman-biplane-icare-full-hd.mp4", 0.0f),
-            new Node("http://kolor.com/360-videos-files/assets/Apartment_tour.mp4", 0.0f)
-        };
-
-        // Apartments <-- Rio --> Biplane (initialize directions)
-        allNodes[0].East = allNodes[1];
-        allNodes[0].West = allNodes[2];
-        allNodes[1].West = allNodes[0];
-        allNodes[2].East = allNodes[0];
+        initializeNodes();
 
         // Start index is 0
         currNode = allNodes[0];
@@ -56,33 +44,6 @@ public class PlayVideos : MonoBehaviour {
         eye.SetVisibility(false);   // Remove walls
 
         //StartCoroutine(DebugSeekPercent());
-    }
-
-    IEnumerator DebugSeekPercent()
-    {
-        for (int i = 0; i < 15; i++)
-        {
-            yield return new WaitForSeconds(5);
-
-            double percentageLoaded = mediaPlayer.GetCurrentSeekPercent() / 100.0;
-            double percentagePlayed = (double) mediaPlayer.GetSeekPosition() / duration;
-            double difference = Math.Abs(percentageLoaded - percentagePlayed);
-            //Debug.Log("Debug: Seek % = " + mediaPlayer.GetCurrentSeekPercent() + " at position " + mediaPlayer.GetSeekPosition());
-            Debug.Log("Debug: Percentage Loaded: " + percentageLoaded + ", Percentage Played: " + percentagePlayed);
-
-            //if (percentagePlayed > .05 && difference < .05 && 
-            //        mediaPlayer.GetCurrentState() != MediaPlayerCtrl.MEDIAPLAYER_STATE.PAUSED)
-            //{
-            //    mediaPlayer.Pause();
-            //    Debug.Log("Debug: Paused!");
-            //}
-
-            //if (difference > .1 &&
-            //        mediaPlayer.GetCurrentState() == MediaPlayerCtrl.MEDIAPLAYER_STATE.PAUSED)
-            //    mediaPlayer.Play();
-
-            //Debug.Log("Debug: difference = " + difference);
-        }
     }
 
     void OnReady()
@@ -103,6 +64,34 @@ public class PlayVideos : MonoBehaviour {
     {
         Debug.Log("In OnVideoError: " + mediaPlayer.GetDuration() / 1000 + ", " + mediaPlayer.GetSeekPosition() / 1000 + ", " + mediaPlayer.GetCurrentSeekPercent());
         eye.SetVisibility(true);
+    }
+
+    private void initializeNodes()
+    {
+        // Links + Rotation value (0 to 360, counterclockwise)
+        allNodes = new Node[] {
+            new Node("https://www.dropbox.com/s/ztqvxo4asboxpyu/scene%20A%20stitched.mp4?raw=1", 54.0f),
+            new Node("https://www.dropbox.com/s/i5bc13vqnryvg9z/Stitched%20scene%20B.mp4?raw=1", 168.0f),
+            new Node("https://www.dropbox.com/s/mzpanrwrzle8u3a/stitched%20scene%20c.mp4?raw=1", 182.0f),
+            new Node("https://www.dropbox.com/s/kpu8v1zz53q1u1z/stitched%20scene%20d.mp4?raw=1", 200.0f),
+            new Node("https://www.dropbox.com/s/jsxvo4a1gqgm7vh/stitched%20scene%20e.mp4?raw=1", 303.0f),
+            new Node("https://www.dropbox.com/s/i1c9iff5cjct0yr/scene%20f%20stitched.mp4?raw=1", 163.0f),
+            new Node("https://www.dropbox.com/s/12vdxst6lta5ubg/stitched%20scene%20g.mp4?raw=1", 221.0f)
+        };
+
+        // initialize directions
+        allNodes[0].North = allNodes[1];
+        allNodes[1].South = allNodes[0];
+        allNodes[1].North = allNodes[2];
+        allNodes[2].South = allNodes[1];
+        allNodes[2].West = allNodes[3];
+        allNodes[2].North = allNodes[5];
+        allNodes[3].East = allNodes[2];
+        allNodes[3].West = allNodes[4];
+        allNodes[4].East = allNodes[3];
+        allNodes[5].South = allNodes[2];
+        allNodes[5].North = allNodes[6];
+        allNodes[6].South = allNodes[5];
     }
 
     public void ToNextVideo (int direction)
@@ -149,5 +138,32 @@ public class PlayVideos : MonoBehaviour {
         mediaPlayer.UnLoad();
         mediaPlayer.Load(Link);
         mediaPlayer.Play();
+    }
+
+    IEnumerator DebugSeekPercent()
+    {
+        for (int i = 0; i < 15; i++)
+        {
+            yield return new WaitForSeconds(5);
+
+            double percentageLoaded = mediaPlayer.GetCurrentSeekPercent() / 100.0;
+            double percentagePlayed = (double)mediaPlayer.GetSeekPosition() / duration;
+            double difference = Math.Abs(percentageLoaded - percentagePlayed);
+            //Debug.Log("Debug: Seek % = " + mediaPlayer.GetCurrentSeekPercent() + " at position " + mediaPlayer.GetSeekPosition());
+            Debug.Log("Debug: Percentage Loaded: " + percentageLoaded + ", Percentage Played: " + percentagePlayed);
+
+            //if (percentagePlayed > .05 && difference < .05 && 
+            //        mediaPlayer.GetCurrentState() != MediaPlayerCtrl.MEDIAPLAYER_STATE.PAUSED)
+            //{
+            //    mediaPlayer.Pause();
+            //    Debug.Log("Debug: Paused!");
+            //}
+
+            //if (difference > .1 &&
+            //        mediaPlayer.GetCurrentState() == MediaPlayerCtrl.MEDIAPLAYER_STATE.PAUSED)
+            //    mediaPlayer.Play();
+
+            //Debug.Log("Debug: difference = " + difference);
+        }
     }
 }
