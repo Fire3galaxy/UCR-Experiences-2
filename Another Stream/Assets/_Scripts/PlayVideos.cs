@@ -31,9 +31,7 @@ public class PlayVideos : MonoBehaviour {
     void Start ()
     {
         initializeNodes();
-
-        // Start index is 0
-        currNode = allNodes[0];
+        currNode = allNodes[0]; // Start index is 0
 
         Debug.Log("In start of PlayVideos: " + currNode.Link);
         mediaPlayer.OnReady += OnReady;
@@ -48,10 +46,11 @@ public class PlayVideos : MonoBehaviour {
 
     void OnReady()
     {
-        mediaPlayer.Play();
         sphere.GetComponent<Transform>().Rotate(new Vector3(0f, currNode.RotationY, 0f));
         duration = mediaPlayer.GetDuration();
-        Debug.Log("Duration: " + mediaPlayer.GetDuration() / 60000.0 + ", " + mediaPlayer.GetCurrentSeekPercent());
+        mediaPlayer.Play();
+        
+        Debug.Log("Duration: " + duration / 60000.0 + ", " + mediaPlayer.GetCurrentSeekPercent());
     }
 
     void OnEnd ()
@@ -70,13 +69,13 @@ public class PlayVideos : MonoBehaviour {
     {
         // Links + Rotation value (0 to 360, counterclockwise)
         allNodes = new Node[] {
-            new Node("https://www.dropbox.com/s/ztqvxo4asboxpyu/scene%20A%20stitched.mp4?raw=1", 54.0f),
-            new Node("https://www.dropbox.com/s/i5bc13vqnryvg9z/Stitched%20scene%20B.mp4?raw=1", 168.0f),
-            new Node("https://www.dropbox.com/s/mzpanrwrzle8u3a/stitched%20scene%20c.mp4?raw=1", 182.0f),
-            new Node("https://www.dropbox.com/s/kpu8v1zz53q1u1z/stitched%20scene%20d.mp4?raw=1", 200.0f),
-            new Node("https://www.dropbox.com/s/jsxvo4a1gqgm7vh/stitched%20scene%20e.mp4?raw=1", 303.0f),
-            new Node("https://www.dropbox.com/s/i1c9iff5cjct0yr/scene%20f%20stitched.mp4?raw=1", 163.0f),
-            new Node("https://www.dropbox.com/s/12vdxst6lta5ubg/stitched%20scene%20g.mp4?raw=1", 221.0f)
+            new Node("https://www.dropbox.com/s/0bwkcq5a689f4kg/Flip_A.mp4?raw=1", 54.0f),
+            new Node("https://www.dropbox.com/s/f2rwlvwcmglasa3/Flip_B.mp4?raw=1", 138.0f),
+            new Node("https://www.dropbox.com/s/nt68w0zrisw3gbf/Flip_C.mp4?raw=1", 282.0f),
+            new Node("https://www.dropbox.com/s/vjz0125bnloaozh/Flip_D.mp4?raw=1", 280.0f),
+            new Node("https://www.dropbox.com/s/fahbyh28dnc4l0b/Flip_E.mp4?raw=1", 23.0f),
+            new Node("https://www.dropbox.com/s/zxkkeewrn13cpu8/Flip_F.mp4?raw=1", 263.0f),
+            new Node("https://www.dropbox.com/s/s6qy5bzmvi5h25w/Flip_G.mp4?raw=1", 171.0f)
         };
 
         // initialize directions

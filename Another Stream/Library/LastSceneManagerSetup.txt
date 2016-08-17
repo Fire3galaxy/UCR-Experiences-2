@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Camera Test.unity
+- path: Assets/_Scenes/First Tour.unity
   isLoaded: 1
   isActive: 1
