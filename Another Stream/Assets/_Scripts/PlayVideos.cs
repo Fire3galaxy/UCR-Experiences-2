@@ -54,13 +54,13 @@ public class PlayVideos : MonoBehaviour {
     {
         // Links + Rotation value (0 to 360, counterclockwise)
         allNodes = new Node[] {
-            new Node("https://www.dropbox.com/s/0bwkcq5a689f4kg/Flip_A.mp4?raw=1", 54.0f),
-            new Node("https://www.dropbox.com/s/f2rwlvwcmglasa3/Flip_B.mp4?raw=1", 168.0f),
-            new Node("https://www.dropbox.com/s/nt68w0zrisw3gbf/Flip_C.mp4?raw=1", 182.0f),
-            new Node("https://www.dropbox.com/s/vjz0125bnloaozh/Flip_D.mp4?raw=1", 200.0f),
-            new Node("https://www.dropbox.com/s/fahbyh28dnc4l0b/Flip_E.mp4?raw=1", 303.0f),
-            new Node("https://www.dropbox.com/s/zxkkeewrn13cpu8/Flip_F.mp4?raw=1", 163.0f),
-            new Node("https://www.dropbox.com/s/s6qy5bzmvi5h25w/Flip_G.mp4?raw=1", 221.0f)
+            new Node("https://www.dropbox.com/s/d79qxmwhsn9cdeb/Flip_A.mp4?raw=1", 54.0f),
+            new Node("https://www.dropbox.com/s/6y7f2ygf0nhy4uy/Flip_B.mp4?raw=1", 168.0f),
+            new Node("https://www.dropbox.com/s/d8wg4l29g8nuw0m/Flip_C.mp4?raw=1", 182.0f),
+            new Node("https://www.dropbox.com/s/t08fo4q86jxf9lr/Flip_D.mp4?raw=1", 200.0f),
+            new Node("https://www.dropbox.com/s/npkc66647ku1efr/Flip_E.mp4?raw=1", 303.0f),
+            new Node("https://www.dropbox.com/s/t4jf3gwuxsmj4uq/Flip_F.mp4?raw=1", 163.0f),
+            new Node("https://www.dropbox.com/s/dul42z0hlkmi3z5/Flip_G.mp4?raw=1", 221.0f)
         };
 
         // initialize directions
