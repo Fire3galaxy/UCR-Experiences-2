@@ -46,7 +46,8 @@ public class PlayVideos : MonoBehaviour {
 
     void OnReady()
     {
-        sphere.GetComponent<Transform>().Rotate(new Vector3(0f, currNode.RotationY, 0f));
+        Quaternion targetY = Quaternion.Euler(0f, currNode.RotationY, 0f);
+        sphere.GetComponent<Transform>().transform.rotation = targetY;
         duration = mediaPlayer.GetDuration();
         mediaPlayer.Play();
         
@@ -70,12 +71,12 @@ public class PlayVideos : MonoBehaviour {
         // Links + Rotation value (0 to 360, counterclockwise)
         allNodes = new Node[] {
             new Node("https://www.dropbox.com/s/0bwkcq5a689f4kg/Flip_A.mp4?raw=1", 54.0f),
-            new Node("https://www.dropbox.com/s/f2rwlvwcmglasa3/Flip_B.mp4?raw=1", 138.0f),
-            new Node("https://www.dropbox.com/s/nt68w0zrisw3gbf/Flip_C.mp4?raw=1", 282.0f),
-            new Node("https://www.dropbox.com/s/vjz0125bnloaozh/Flip_D.mp4?raw=1", 280.0f),
-            new Node("https://www.dropbox.com/s/fahbyh28dnc4l0b/Flip_E.mp4?raw=1", 23.0f),
-            new Node("https://www.dropbox.com/s/zxkkeewrn13cpu8/Flip_F.mp4?raw=1", 263.0f),
-            new Node("https://www.dropbox.com/s/s6qy5bzmvi5h25w/Flip_G.mp4?raw=1", 171.0f)
+            new Node("https://www.dropbox.com/s/f2rwlvwcmglasa3/Flip_B.mp4?raw=1", 168.0f),
+            new Node("https://www.dropbox.com/s/nt68w0zrisw3gbf/Flip_C.mp4?raw=1", 182.0f),
+            new Node("https://www.dropbox.com/s/vjz0125bnloaozh/Flip_D.mp4?raw=1", 200.0f),
+            new Node("https://www.dropbox.com/s/fahbyh28dnc4l0b/Flip_E.mp4?raw=1", 303.0f),
+            new Node("https://www.dropbox.com/s/zxkkeewrn13cpu8/Flip_F.mp4?raw=1", 163.0f),
+            new Node("https://www.dropbox.com/s/s6qy5bzmvi5h25w/Flip_G.mp4?raw=1", 221.0f)
         };
 
         // initialize directions
