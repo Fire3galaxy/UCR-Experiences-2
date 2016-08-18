@@ -112,9 +112,9 @@
     <Compile Include="Assets\GoogleVR\Scripts\UI\IGvrGazePointer.cs" />
     <Compile Include="Assets\GoogleVR\Scripts\UI\IGvrGazeResponder.cs" />
     <Compile Include="Assets\_Scripts\DirectionValues.cs" />
+    <Compile Include="Assets\_Scripts\Node.cs" />
     <Compile Include="Assets\_Scripts\PlayVideos.cs" />
     <Compile Include="Assets\_Scripts\TimeoutTest.cs" />
-    <Compile Include="Assets\_Scripts\ToggleVideo.cs" />
     <Compile Include="Assets\_Scripts\WallTrigger.cs" />
     <Compile Include="Assets\_Scripts\WallVisibilityController.cs" />
   </ItemGroup>

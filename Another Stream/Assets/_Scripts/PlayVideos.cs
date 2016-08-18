@@ -3,22 +3,6 @@ using System.Collections;
 using System;
 
 public class PlayVideos : MonoBehaviour {
-    class Node
-    {
-        public String Link;
-        public Node North, South, East, West;
-        public float RotationY;
-
-        public Node(String link, float rotationY)
-        {
-            Link = link;
-            North = null;
-            South = null;
-            East = null;
-            West = null;
-            RotationY = rotationY;
-        }
-    }
 
     public MediaPlayerCtrl mediaPlayer;
     public WallVisibilityController eye;
@@ -39,7 +23,7 @@ public class PlayVideos : MonoBehaviour {
         mediaPlayer.OnVideoError += OnVideoError;
         mediaPlayer.Load(currNode.Link);
         
-        eye.SetVisibility(false);   // Remove walls
+        eye.SetVisibility(false, null);   // Remove walls
 
         //StartCoroutine(DebugSeekPercent());
     }
@@ -57,13 +41,13 @@ public class PlayVideos : MonoBehaviour {
     void OnEnd ()
     {
         Debug.Log("In OnEnd");
-        eye.SetVisibility(true);
+        eye.SetVisibility(true, currNode);
     }
 
     void OnVideoError(MediaPlayerCtrl.MEDIAPLAYER_ERROR iCode, MediaPlayerCtrl.MEDIAPLAYER_ERROR iCodeExtra)
     {
         Debug.Log("In OnVideoError: " + mediaPlayer.GetDuration() / 1000 + ", " + mediaPlayer.GetSeekPosition() / 1000 + ", " + mediaPlayer.GetCurrentSeekPercent());
-        eye.SetVisibility(true);
+        eye.SetVisibility(true, currNode);
     }
 
     private void initializeNodes()
@@ -134,7 +118,7 @@ public class PlayVideos : MonoBehaviour {
 
     private void PlayVideo(String Link)
     {
-        eye.SetVisibility(false);
+        eye.SetVisibility(false, null);
         mediaPlayer.UnLoad();
         mediaPlayer.Load(Link);
         mediaPlayer.Play();
